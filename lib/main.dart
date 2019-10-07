@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rest_api/notifiers/block.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_rest_api/pages/widget_Item.dart';
+import 'package:flutter_rest_api/pages/widget_ItemList.dart';
 
 void main() => runApp(MyApp());
 
@@ -47,6 +47,28 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: Icon(Icons.add),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.blue.shade100,
+        selectedItemColor: Colors.green,
+        currentIndex: blockitem.currentTab,
+        onTap: (value) {
+          blockitem.currentTab = value;
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.people),
+            title: Text('All')
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.child_care),
+            title: Text('Child')
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            title: Text('Adult')
+          ),
+        ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
