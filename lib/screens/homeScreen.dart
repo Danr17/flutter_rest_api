@@ -11,10 +11,23 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  BlockItem notifier;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final notifier = Provider.of<BlockItem>(context);
+
+    if (this.notifier != notifier) {
+      this.notifier = notifier;
+      Future.microtask(() => notifier.fetchItems());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     BlockItem blockitem = Provider.of<BlockItem>(context);
-    blockitem.fetchItems();
 
     return Scaffold(
       appBar: AppBar(
