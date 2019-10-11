@@ -1,17 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter_rest_api/model/item.dart';
+import 'package:flutter_rest_api/models/item.dart';
 import 'package:http/http.dart' as http;
 
 class BlockItem with ChangeNotifier {
-
-  int _currentTab = 0;
-  get currentTab => this._currentTab;
-  set currentTab(int value) {
-    this._currentTab = value;
-    notifyListeners();
-  }
 
   List<List<Item>> _items;
   List<List<Item>> get listitems => _items;

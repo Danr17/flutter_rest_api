@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rest_api/notifiers/block.dart';
+import 'package:flutter_rest_api/models/block.dart';
+import 'package:flutter_rest_api/models/currentTab.dart';
 import 'package:provider/provider.dart';
 
 class ItemList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final block = Provider.of<BlockItem>(context);
+    final BlockItem blockitem = Provider.of<BlockItem>(context);
+    final CurrentTab tab = Provider.of<CurrentTab>(context);
 
     return ListView.builder(
-      itemCount: block.listitems[block.currentTab] == null ? 0 : block.listitems[block.currentTab].length,
+      itemCount: blockitem.listitems[tab.currentTab] == null ? 0 : blockitem.listitems[tab.currentTab].length,
       itemBuilder: (BuildContext context, int index) {
         return Card(
           elevation: 2.0,
           color: Colors.blue.shade50,
           child: ListTile(
-            leading: getValidityIcon(block.listitems[block.currentTab][index].isValid, block.listitems[block.currentTab][index].targetAge),
-            title: Text(block.listitems[block.currentTab][index].name),
-            subtitle: Text("Expires at: ${block.listitems[block.currentTab][index].expDate}"),
+            leading: getValidityIcon(blockitem.listitems[tab.currentTab][index].isValid, blockitem.listitems[tab.currentTab][index].targetAge),
+            title: Text(blockitem.listitems[tab.currentTab][index].name),
+            subtitle: Text("Expires at: ${blockitem.listitems[tab.currentTab][index].expDate}"),
             trailing: Icon(
               Icons.arrow_forward_ios,
               color: Colors.green.shade400,

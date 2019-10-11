@@ -22,33 +22,7 @@ class Item {
     this.isOpen, 
     this.opened, 
     this.isValid,
-    this.daysValid});
-
-/*
-  set name(String newName) {
-			this.name = newName;
-	}
-
-  set manufactured(String newManufactured) {
-			this.manufactured = newManufactured;
-	}
-
-  set expDate(String newExpdate) {
-			this.expDate = newExpdate;
-	}  
-
-  set expOpen(int newExpopen) {
-			this.expOpen = newExpopen;
-	}
-
-  set isOpen(bool newIsopen) {
-			this.isOpen = newIsopen;
-	}
-
-  set opened(String newOpened) {
-			this.opened = newOpened;
-	}
-  */        
+    this.daysValid});      
 
   factory Item.fromJson(Map<String, dynamic> json) {
     return Item(
