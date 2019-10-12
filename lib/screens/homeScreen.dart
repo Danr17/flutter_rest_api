@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rest_api/models/block.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_rest_api/widgets/ItemList.dart';
+import 'package:flutter_rest_api/widgets/itemList.dart';
 import 'package:flutter_rest_api/widgets/bottomNavigation.dart';
 
 class HomeScreen extends StatefulWidget {

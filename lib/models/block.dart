@@ -6,35 +6,28 @@ import 'package:http/http.dart' as http;
 
 class BlockItem with ChangeNotifier {
 
-  List<List<Item>> _items;
-  List<List<Item>> get listitems => _items;
-  set listitems(List<List<Item>> val) {
+  List<Item> _items;
+  List<Item> get listitems => _items;
+  List<Item> get childitems => _items.where((item) => item.targetAge == "child").toList();
+  List<Item> get adultitems => _items.where((item) => item.targetAge == "adult").toList();
+
+  set listitems(List<Item> val) {
     _items = val;
     notifyListeners();
   }
 
-  Future<List<List<Item>>> fetchItems() async {
+  Future<List<Item>> fetchItems() async {
     final response = await http.get('https://meds.dev-state.com/json/');
 
     List res = jsonDecode(response.body);
     List<Item> dataAll = [];
-    List<Item> dataChild = [];
-    List<Item> dataAdult = [];
 
     for (var i = 0; i < res.length; i++) {
       var item = Item.fromJson(res[i]);
-      switch (item.targetAge) {
-        case "adult":
-        dataAll.add(item);
-        dataAdult.add(item);
-        break;
-        case "child":
-        dataAll.add(item);
-        dataChild.add(item);
-      }
+      dataAll.add(item);
     }
 
-    listitems = [dataAll, dataChild, dataAdult];
+    listitems = dataAll;
     return listitems;
   }
 }
