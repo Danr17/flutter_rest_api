@@ -30,12 +30,7 @@ class ItemList extends StatelessWidget {
               color: Colors.green.shade400,
             ),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ItemDetail(),
-                ),
-              );
+
             },
           ),
         );

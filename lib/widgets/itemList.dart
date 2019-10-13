@@ -54,7 +54,7 @@ class ItemList extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ItemDetail(),
+                  builder: (context) => ItemDetail(itemDetailed: selectedList[index]),
                 ),
               );
             },
