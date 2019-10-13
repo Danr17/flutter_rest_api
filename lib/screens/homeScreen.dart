@@ -3,6 +3,7 @@ import 'package:flutter_rest_api/models/block.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_rest_api/widgets/itemList.dart';
 import 'package:flutter_rest_api/widgets/bottomNavigation.dart';
+import 'package:flutter_rest_api/screens/itemNew.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -37,7 +38,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ? Center(child: CircularProgressIndicator())
           : ItemList(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => newItem() ), 
+                  );
+        },
         child: Icon(Icons.add),
       ),
       bottomNavigationBar: BottomNav(),
