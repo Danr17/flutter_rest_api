@@ -71,7 +71,7 @@ class ItemDetail extends StatelessWidget {
                       itemDetailed.name,
                       style: TextStyle(
                         fontSize: 20.0,
-                        color: Colors.green,
+                        color: Colors.blue.shade600,
                       ),
                     ),
                   ),

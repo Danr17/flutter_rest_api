@@ -37,7 +37,7 @@ class BlockItem with ChangeNotifier {
 
 //Get all Items
   Future<List<Item>> fetchItems() async {
-    
+
     http.Response response = await http.get("https://meds.dev-state.com/json/");
 
     if (response.statusCode == 200) {
@@ -55,7 +55,7 @@ class BlockItem with ChangeNotifier {
 
 
 //Add a new Item
-Future addAnItem(Item item) async {
+Future addItem(Item item) async {
 
   final response = await http.put('https://meds.dev-state.com/json/add', body: json.encode(item));
   if (response.statusCode == 200) {
@@ -68,7 +68,7 @@ Future addAnItem(Item item) async {
 
 
 //Delete the Item
-Future deleteAnItem(int id) async {
+Future deleteItem(int id) async {
 
   final response = await http.get('https://meds.dev-state.com/json/del?id=$id');
   if (response.statusCode == 200) {
