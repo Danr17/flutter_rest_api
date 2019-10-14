@@ -50,7 +50,7 @@ class BlockItem with ChangeNotifier {
 //Get all Items
   Future<List<Item>> fetchItems() async {
 
-    http.Response response = await http.get("https://meds.dev-state.com/json/");
+    http.Response response = await http.get("http://10.0.2.2:8080/json/");
 
     if (response.statusCode == 200) {
       var mapResponse = jsonDecode(response.body);
@@ -61,7 +61,7 @@ class BlockItem with ChangeNotifier {
       listitems = dataAll;
       return listitems;
     } else {
-      throw Exception('Failed to load Todo from the Internet');
+      throw Exception('Failed to load from the Internet');
     }
   }
 
@@ -73,7 +73,7 @@ Future addItem(Item item) async {
   Map<dynamic, dynamic> mapData = toJson(item);
   String newjson = json.encode(mapData);
 
-  final response = await http.post('https://meds.dev-state.com/json/add', headers: _headers, body: newjson);
+  final response = await http.post('http://10.0.2.2:8080/json/add', headers: _headers, body: newjson);
   if (response.statusCode == 200) {
   //  final responseBody = await json.decode(response.body);
     return SnackBar(content: Text(response.body));
@@ -86,7 +86,7 @@ Future addItem(Item item) async {
 //Delete the Item
 Future deleteItem(String id) async {
 
-  final response = await http.get('https://meds.dev-state.com/json/del?id=$id');
+  final response = await http.get('http://10.0.2.2:8080/json/del?id=$id');
   if (response.statusCode == 200) {
     final responseBody = await json.decode(response.body);
   return SnackBar(content: Text(responseBody));
