@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_rest_api/models/block.dart';
+import 'package:flutter_rest_api/screens/homeScreen.dart';
 import 'package:flutter_rest_api/models/item.dart';
 
 class NewItem extends StatefulWidget {
@@ -17,7 +18,7 @@ class _NewItemState extends State<NewItem> {
 
   List<String> _openStates = <String>['', 'true', 'false'];
   String _isOpen = '';
-  String openState = 'child';
+  String openState = 'false';
 
   String name;
   int expopen;
@@ -224,15 +225,18 @@ class _NewItemState extends State<NewItem> {
                   onPressed: () async {
                     if (_formKey.currentState.validate()) {
                       _formKey.currentState.save();
+                      print(openState);
                       await productProvider.addItem(Item(
                           name: name,
                           expDate: _controlerExp.text,
                           expOpen: expopen,
                           comment: comments,
                           targetAge: targetAge,
-                          isOpen: _isOpen.toLowerCase() == 'true',
+                          isOpen: openState == "true" ? true : false,
                           opened: _controlerOpen.text));
-                      Navigator.pop(context);
+                      Navigator.of(context).push(new MaterialPageRoute(
+                        builder: (BuildContext context) => HomeScreen(),
+                      ));
                     }
                   },
                   child: Text('Add New Item',

@@ -23,8 +23,8 @@ class ItemDetail extends StatelessWidget {
               style: new TextStyle(color: Colors.black),
             ),
             color: Colors.red,
-            onPressed: () {
-              //   await productProvider.removeProduct(product.id);
+            onPressed: () async {
+              await productProvider.deleteItem(itemDetailed.id);
               Navigator.of(context).push(new MaterialPageRoute(
                 builder: (BuildContext context) => HomeScreen(),
               ));

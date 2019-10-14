@@ -84,7 +84,7 @@ Future addItem(Item item) async {
 
 
 //Delete the Item
-Future deleteItem(int id) async {
+Future deleteItem(String id) async {
 
   final response = await http.get('https://meds.dev-state.com/json/del?id=$id');
   if (response.statusCode == 200) {
