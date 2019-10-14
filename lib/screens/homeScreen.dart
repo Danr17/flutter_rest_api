@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => newItem() ), 
+                  builder: (context) => NewItem() ), 
                   );
         },
         child: Icon(Icons.add),

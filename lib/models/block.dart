@@ -17,6 +17,18 @@ class BlockItem with ChangeNotifier {
     notifyListeners();
   }
 
+  Map<dynamic, dynamic> toJson(Item item) {
+    var mapData = new Map();
+    mapData["name"] = item.name;
+    mapData["expdate"] = item.expDate;
+    mapData["expopen"] = item.expOpen;
+    mapData["comment"] = item.comment;
+    mapData["targetage"] = item.targetAge;
+    mapData["isopen"] = item.isOpen;
+    mapData["opened"] = item.opened;
+    return mapData;
+  }
+
 /*
   Future<List<Item>> fetchItems() async {
     final response = await http.get('https://meds.dev-state.com/json/');
@@ -56,11 +68,15 @@ class BlockItem with ChangeNotifier {
 
 //Add a new Item
 Future addItem(Item item) async {
+  final _headers = {'Content-Type': 'application/json'};
 
-  final response = await http.put('https://meds.dev-state.com/json/add', body: json.encode(item));
+  Map<dynamic, dynamic> mapData = toJson(item);
+  String newjson = json.encode(mapData);
+
+  final response = await http.post('https://meds.dev-state.com/json/add', headers: _headers, body: newjson);
   if (response.statusCode == 200) {
-    final responseBody = await json.decode(response.body);
-    return SnackBar(content: Text(responseBody));
+  //  final responseBody = await json.decode(response.body);
+    return SnackBar(content: Text(response.body));
   } else {
     throw Exception('Failed to update the Item. Error: ${response.toString()}');
   }
