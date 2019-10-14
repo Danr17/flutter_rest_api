@@ -225,7 +225,6 @@ class _NewItemState extends State<NewItem> {
                   onPressed: () async {
                     if (_formKey.currentState.validate()) {
                       _formKey.currentState.save();
-                      print(openState);
                       await productProvider.addItem(Item(
                           name: name,
                           expDate: _controlerExp.text,
